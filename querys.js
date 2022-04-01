@@ -12,7 +12,6 @@ const getTareas = async () => {
 
 	try {
 		const resultado = await pool.query(consulta);
-		console.log(resultado.rows);
 		return resultado;
 	} catch (err) {
 		console.log("Error");

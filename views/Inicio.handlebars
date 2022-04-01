@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="/bootstrap/bootstrap.css"/>
 
-{{>NuevaTarea}}
+	<div>
+		<a
+			class="btn btn-success"
+			type="button"
+			data-bs-toggle="modal"
+			data-bs-target="#exampleModal"
+		>
+			Nueva Tarea
+		</a>
+
 {{>Tareas}}
+{{>NuevaTarea}}
 
 <script src="/BootstrapJs/bootstrap.js"></script>
+
+<style>
+    body{
+        background-color: #5e1010;
+    }
+</style>
+
 </html>
