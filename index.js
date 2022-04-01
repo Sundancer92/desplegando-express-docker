@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express();
 const exphbs = require("express-handlebars");
+// DB QUERYS //
+const { insertar, getTareas } = require("./querys");
+// DB QUERYS //
 
 app.listen(3000, () => {
 	console.log("Server started on port 3000");
 });
+
 // Invocacion bootstrap
 app.use(
 	"/bootstrap",
@@ -14,7 +18,8 @@ app.use(
 	"/BootstrapJs",
 	express.static(__dirname + "/node_modules/bootstrap/dist/js/"),
 );
-// -------------------------------
+// Invocacion bootstrap
+
 // Configuracion de handlebars
 app.set("view engine", "handlebars");
 
@@ -31,8 +36,21 @@ app.engine(
 //-------------------------------
 
 app.get("/", (req, res) => {
-	// Renderizado
 	res.render("Inicio", {
 		layout: "Inicio",
 	});
 });
+
+app.get("/todo-create", (req, res) => {});
+
+app.get("/todo-delete/:id", (req, res) => {});
+
+// API
+app.get("/todos", async (req, res) => {
+	const data = await getTareas();
+	res.end(JSON.stringify(data.rows));
+});
+
+app.post("/todos", async (req, res) => {});
+
+app.delete("/todos/:id", async (req, res) => {});
