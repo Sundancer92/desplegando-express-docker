@@ -15,13 +15,7 @@
 	</tbody>
 </table>
 
-		<a
-			class="btn btn-success"
-			type="button"
-			href="/todo-create"
-		>
-			Nueva Tarea
-		</a>
+
 
 {{! SCRIPT }}
 
@@ -40,7 +34,7 @@ const getData = async () => {
                 <td>${data[i].nombre}</td>
                 <td>${data[i].descripcion}</td>
                 <td>${formatDate(data[i].fecha_creacion)}</td>
-				<td><a class="btn btn-danger" href="/delete">Eliminar</a></td>
+				<td><a class="btn btn-danger" href="/todo-delete/:${data[i].id}&:${data[i].nombre}">Eliminar</a></td>
             </tr>
 		`
 	}

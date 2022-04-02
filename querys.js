@@ -38,4 +38,20 @@ const insertarTarea = async (datos) => {
 	}
 };
 
-module.exports = { insertarTarea, getTareas };
+const eliminarTarea = async (id) => {
+	const deleteQuery = {
+		text: "DELETE FROM tareas WHERE id = $1",
+		values: [id],
+	};
+	try {
+		await pool.query("BEGIN");
+		const resultado = await pool.query(deleteQuery);
+		await pool.query("COMMIT");
+		return resultado.rows;
+	} catch (error) {
+		await pool.query("ROLLBACK");
+		console.log(error);
+	}
+};
+
+module.exports = { insertarTarea, getTareas, eliminarTarea };

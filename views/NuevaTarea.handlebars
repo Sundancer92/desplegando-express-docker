@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="/bootstrap/bootstrap.css"/>
+<script src="/BootstrapJs/bootstrap.js"></script>
 
 <div class="container mt-3">
     <form>
@@ -34,7 +35,7 @@
     }
 </style>
 
-<script src="/BootstrapJs/bootstrap.js"></script>
+
 
 <script>
     const fecha_creacion = new Date();
@@ -61,7 +62,7 @@
         .then(res => {
             if(res.status === 200){
                 alert('Tarea creada con éxito');
-                window.location.href = 'http://localhost:3000/';
+                window.location.href = '/';
             }
         })
         .catch(err => console.log(err));

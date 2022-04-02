@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="/bootstrap/bootstrap.css"/>
+<script src="/BootstrapJs/bootstrap.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
+
+<div class="container mt-5">
+    <div class="sticky-top"> 
+		<a
+			class="btn btn-success "
+			type="button"
+			href="/todo-create"
+		>
+			Nueva Tarea
+		</a>
+    </div>
 
 {{>Tareas}}
 
+</div>
 
 
 <style>
@@ -11,6 +24,4 @@
         background-color: #5e1010;
     }
 </style>
-
-<script src="/BootstrapJs/bootstrap.js"></script>
 </html>
