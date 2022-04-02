@@ -15,6 +15,14 @@
 	</tbody>
 </table>
 
+		<a
+			class="btn btn-success"
+			type="button"
+			href="/todo-create"
+		>
+			Nueva Tarea
+		</a>
+
 {{! SCRIPT }}
 
 <script>
@@ -31,22 +39,16 @@ const getData = async () => {
                 <td>${data[i].id}</td>
                 <td>${data[i].nombre}</td>
                 <td>${data[i].descripcion}</td>
-                <td>${data[i].fecha_creacion}</td>
+                <td>${formatDate(data[i].fecha_creacion)}</td>
 				<td><a class="btn btn-danger" href="/delete">Eliminar</a></td>
             </tr>
 		`
 	}
-
-
-	
-
-
-	
-
 }
-
-
-
+	const formatDate = (date) => {
+		const dateFormat = moment(date).format("DD-MM-YYYY");
+		return `${dateFormat} `;
+	};
+	formatDate();
 getData();
-
 </script>

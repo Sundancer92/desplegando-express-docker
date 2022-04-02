@@ -20,19 +20,22 @@ const getTareas = async () => {
 	}
 };
 
-const insertar = async (datos) => {
+const insertarTarea = async (datos) => {
 	const consulta = {
-		text: "INSERT INTO tareas VALUES ($1,$2",
-		values: [datos.nombre, datos.descripcion],
+		text: "INSERT INTO tareas(nombre, descripcion, fecha_creacion) VALUES ($1,$2,$3)",
+		values: [datos.nombre, datos.descripcion, datos.fecha_creacion],
 	};
 
 	try {
+		await pool.query("BEGIN");
 		const resultado = await pool.query(consulta);
+		await pool.query("COMMIT");
 		return resultado;
 	} catch (err) {
+		await pool.query("ROLLBACK");
 		console.error(err.code);
 		return err;
 	}
 };
 
-module.exports = { insertar, getTareas };
+module.exports = { insertarTarea, getTareas };

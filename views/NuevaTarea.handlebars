@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/bootstrap/bootstrap.css"/>
+
+<div class="container mt-3">
+    <form>
+        <div class="form-group mt-1">
+            <label for="nombre">Nombre</label>
+            <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                placeholder="¿Cómo se llama tu tarea?"
+            />
+        </div>
+        <div class="form-group mt-1">
+            <label for="descripcion">Descripción</label>
+            <input
+                type="text"
+                class="form-control"
+                id="descripcion"
+                placeholder="¿En qué consiste tu tarea?"
+            />
+        </div>
+        <button type="submit" class="btn btn-success mt-2">Guardar</button>
+    </form>
+</div>
+
+<style>
+    body{
+        background-color: #5e1010;
+    }
+    label{
+        color: white;
+    }
+</style>
+
+<script src="/BootstrapJs/bootstrap.js"></script>
+
+<script>
+    const fecha_creacion = new Date();
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nombre = document.querySelector('#nombre').value;
+        const descripcion = document.querySelector('#descripcion').value;
+        const url = '/todos';
+        const data = {
+            nombre,
+            descripcion,
+            fecha_creacion
+        };
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        {{!-- .then(res => res.json()) --}}
+        .then(res => {
+            if(res.status === 200){
+                alert('Tarea creada con éxito');
+                window.location.href = 'http://localhost:3000/';
+            }
+        })
+        .catch(err => console.log(err));
+    });
+</script>
+</html>

@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
 const exphbs = require("express-handlebars");
+// ! -------- DEPRECADO --------
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// ! -------- DEPRECADO --------
 // DB QUERYS //
-const { insertar, getTareas } = require("./querys");
+const { insertarTarea, getTareas } = require("./querys");
 // DB QUERYS //
 
 app.listen(3000, () => {
@@ -41,7 +46,11 @@ app.get("/", (req, res) => {
 	});
 });
 
-app.get("/todo-create", (req, res) => {});
+app.get("/todo-create", (req, res) => {
+	res.render("NuevaTarea", {
+		layout: "NuevaTarea",
+	});
+});
 
 app.get("/todo-delete/:id", (req, res) => {});
 
@@ -51,6 +60,12 @@ app.get("/todos", async (req, res) => {
 	res.end(JSON.stringify(data.rows));
 });
 
-app.post("/todos", async (req, res) => {});
+app.post("/todos", async (req, res) => {
+	const { nombre, descripcion, fecha_creacion } = req.body;
+	const result = await insertarTarea({ nombre, descripcion, fecha_creacion });
+	res.status(200)
+	res.send('ok')
+	// res.send(JSON.stringify(result));
+});
 
 app.delete("/todos/:id", async (req, res) => {});
