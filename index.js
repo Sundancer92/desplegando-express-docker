@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 const { insertarTarea, getTareas, eliminarTarea } = require("./querys");
 // DB QUERYS //
 
-app.listen(3000, () => {
+app.listen(4000, () => {
 	console.log("Server started on port 3000");
 });
 
