@@ -1,11 +1,6 @@
+require("dotenv").config();
 const { Pool } = require("pg");
-const pool = new Pool({
-	user: "postgres",
-	host: "localhost",
-	password: "postgres",
-	port: 5432,
-	database: "desafiodocker",
-});
+const pool = new Pool();
 
 const getTareas = async () => {
 	const consulta = "SELECT * FROM tareas";

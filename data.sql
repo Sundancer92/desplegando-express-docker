@@ -8,5 +8,4 @@ CREATE TABLE tareas(
     descripcion varchar (255) NOT NULL,
     fecha_creacion timestamp
     );
-)
 
